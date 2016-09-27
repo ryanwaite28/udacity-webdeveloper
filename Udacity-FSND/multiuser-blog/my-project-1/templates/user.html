@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Oberra | Profile!</title>
+    {% include 'head-info.html' %}
+  </head>
+
+  <body>
+    <div id="topbar">
+		<h3 class="text-center">Profile</h3>
+		<hr>
+		{% include 'top-list.html' %}
+		<hr>
+	</div>
+    <div class="container-fluid top-spacr">
+
+		<div class="row">
+
+			<div class="col-md-4">
+
+				<h1 class="text-center">User Info</h1>
+				<hr>
+				<img id="prof-img" src="{{ user.icon }}"/>
+        <p class="text-center">{{ user.username }}</p>
+        <br>
+        <form id="cpi-form" enctype="multipart/form-data" action="/profile/changeprofileimage" method="POST">
+          <input type="text" name="image" placeholder="Link of Image File.." required/>
+          <input type="submit" value="Add Profile Image"/>
+        </form>
+
+
+			</div>
+
+			<div class="col-md-8">
+
+				<h1 class="text-center">Posts</h1>
+				<hr>
+        <br>
+
+        <ul id="welcome-list">
+        {% for p in posts %}
+          <li>
+            <div style="border-bottom: 1px solid black;">
+              <p><strong><a href="/blog/post/{{ p.key().id() }}">{{ p.title }}</a></strong> <span style="float: right;"><em>{{ p.dateCreated }}</em></span></p>
+            </div>
+            <br>
+            {{ p.contents }}
+            <div>
+
+            </div>
+          </li>
+        {% endfor %}
+        </ul>
+
+			</div>
+
+		</div>
+
+    </div>
+  </body>
+
+</html>

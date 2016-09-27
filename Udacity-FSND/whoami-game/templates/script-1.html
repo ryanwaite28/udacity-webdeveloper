@@ -1,0 +1,255 @@
+<script>
+
+  $(document).ready(function(){
+
+    $('#g-sign-btn').hide();
+    //$('#game-new').hide();
+    $('#user-div').hide();
+    $('#game-div').hide();
+
+  });
+
+  // Google Functions
+  var num = 0;
+  function onSignIn(googleUser) {
+    num++;
+    var profile = googleUser.getBasicProfile();
+    // console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    window.profImg = profile.getImageUrl();
+    $('#prof-img').attr('src', window.profImg);
+    // console.log('Name: ' + profile.getName());
+    // console.log('Image URL: ' + profile.getImageUrl());
+    // console.log('Email: ' + profile.getEmail());
+      //$('#game-signin').hide('fast');
+    if(num > 1) {
+      signIntoGame();
+    }
+  }
+
+  function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      // console.log('User signed out.');
+    });
+    $('#game-signin').show('fast');
+    $('#prof-img').attr('src', '');
+    $('#user-div').hide();
+    $('#game-div').hide();
+    $('#game-new').hide();
+  }
+
+  function init(obj) {
+
+    // console.log('Google Clients Library Loaded.');
+    var rootpath = "//" + window.location.host + "/_ah/api";
+    gapi.client.load('whoamigame', 'v1', callbackOne, rootpath);
+
+  }
+
+  function callbackOne() {
+    $('#g-sign-btn').show();
+    getRecentGames();
+    getTopScores();
+    signIntoGame();
+    //$('#g-sign-btn').trigger('click');
+  }
+
+  function loadUserInfo() {
+    var request = gapi.client.whoamigame.getuser();
+    request.execute(function(resp){
+      // console.log(resp);
+      if(resp.displayname) {
+        $('#game-signin').hide('fast');
+      }
+      $('#displayname-p').text(resp.displayname);
+      $('#email-p').text(resp.email);
+      $('#gp-p').text(resp.games_played);
+      $('#gw-p').text(resp.games_won);
+      $('#gl-p').text(resp.games_lost);
+
+      $('#user-div').show();
+      $('#game-div').show();
+
+    });
+  }
+
+  function signIntoGame() {
+    var request = gapi.client.whoamigame.createuser();
+    request.execute(function(resp){;
+      // console.log(resp);
+    });
+    loadUserInfo();
+    loadCurrentGame();
+  }
+
+  function loadCurrentGame() {
+    var request = gapi.client.whoamigame.getcurrentgame();
+    request.execute(function(resp){
+      // console.log(resp);
+      if(resp.msg == 'No Current Game.') {
+        var ask = confirm('No Current Game. Would You Like To Start One?');
+        if(ask == true) {
+          var request = gapi.client.whoamigame.creategame();
+          request.execute(function(resp){
+            // console.log(resp);
+            $('#hint-1').text(resp.hint_one);
+            $('#hint-2').text(resp.hint_two);
+            $('#hint-3').text(resp.hint_three);
+          })
+        }
+      }
+      else {
+        $('#hint-1').text(resp.hint_one);
+        $('#hint-2').text(resp.hint_two);
+        $('#hint-3').text(resp.hint_three);
+        $('#game-new').show();
+      }
+    })
+  }
+
+  function guessAnswer() {
+    var guess = $('#guess-input').val();
+
+    var request = gapi.client.whoamigame.guessanswer({'msg': guess});
+	   request.execute(function(resp){
+       $('#guess-input').val('');
+       // console.log(resp);
+       if(resp.msg == 'Right! You Win! Your Score Went Up! You Can Start A New Game!') {
+         var ask = confirm('Right! You Win. Start A New Game?');
+         if(ask == true) {
+           var request = gapi.client.whoamigame.creategame();
+           request.execute(function(resp){
+             // console.log(resp);
+             $('#hint-1').text(resp.hint_one);
+             $('#hint-2').text(resp.hint_two);
+             $('#hint-3').text(resp.hint_three);
+           })
+           loadUserInfo();
+           getRecentGames();
+           getTopScores();
+         }
+         else {
+           $('#game-div').hide();
+           $('#game-new').show();
+         }
+       }
+       else if(resp.msg.indexOf('Game Over') != -1) {
+         var ask = confirm('Wrong! Game Over. Start A New Game?');
+         if(ask == true) {
+           var request = gapi.client.whoamigame.creategame();
+           request.execute(function(resp){
+             // console.log(resp);
+             $('#hint-1').text(resp.hint_one);
+             $('#hint-2').text(resp.hint_two);
+             $('#hint-3').text(resp.hint_three);
+           })
+           loadUserInfo();
+           getRecentGames();
+           getTopScores();
+         }
+         else {
+           $('#game-div').hide();
+           $('#game-new').show();
+         }
+       }
+       else {
+         alert(resp.msg);
+       }
+     });
+  }
+
+  function newGame() {
+    var request = gapi.client.whoamigame.creategame();
+    request.execute(function(resp){
+      // console.log(resp);
+      if(resp.msg.indexOf('You already have an active game') != -1) {
+        alert(resp.msg);
+        return;
+      }
+      $('#hint-1').text(resp.hint_one);
+      $('#hint-2').text(resp.hint_two);
+      $('#hint-3').text(resp.hint_three);
+    })
+    loadUserInfo();
+    getRecentGames();
+    getTopScores();
+    $('#game-div').show();
+    $('#game-new').hide();
+  }
+
+  function quitGame() {
+    var request = gapi.client.whoamigame.deletecurrentgame();
+    request.execute(function(resp){
+      // console.log(resp);
+      var ask = confirm('Quitted! Game Over. Start A New Game?');
+      if(ask == true) {
+        var request = gapi.client.whoamigame.creategame();
+        request.execute(function(resp){
+          // console.log(resp);
+          $('#hint-1').text(resp.hint_one);
+          $('#hint-2').text(resp.hint_two);
+          $('#hint-3').text(resp.hint_three);
+        })
+        loadUserInfo();
+        getRecentGames();
+        getTopScores();
+      }
+      else {
+        $('#game-div').hide();
+        $('#game-new').show();
+      }
+    })
+    $('#game-div').show();
+    $('#game-new').hide();
+  }
+
+  //
+
+  function getTopScores() {
+    var request = gapi.client.whoamigame.getuserrankings();
+    request.execute(function(resp){
+      $('#ranks-list').html('');
+      // console.log(resp);
+      for(var key in resp.users) {
+        $('#ranks-list').append('<li>' +
+        '<strong>User:</strong> ' + resp.users[key].displayname +
+        '<br><strong>Games Won:</strong> ' + resp.users[key].games_won +
+        '<br><br></li>');
+      }
+      if( !resp.users ) {
+        $('#top-msg').text('No Rankings...');
+        setTimeout(function(){ $('#top-msg').text(''); }, 3000);
+      }
+      else {
+        $('#top-msg').text('Rankings Loaded!');
+        setTimeout(function(){ $('#top-msg').text(''); }, 3000);
+      }
+    });
+
+  }
+
+  function getRecentGames() {
+    var request = gapi.client.whoamigame.getrecentgames();
+    request.execute(function(resp){
+      $('#recents-list').html('');
+      // console.log(resp);
+      for(var key in resp.games) {
+        $('#recents-list').append('<li>' +
+        '<strong>User:</strong> ' + resp.games[key].user +
+        '<br><strong>Tries:</strong> ' + resp.games[key].tries +
+        '<br><strong>Results:</strong> ' + resp.games[key].msg +
+        '<br><strong>Date:</strong> ' + resp.games[key].date +
+        '<br><br></li>');
+      }
+      if( !resp.games ) {
+        $('#top-msg').text('No Recent games...');
+        setTimeout(function(){ $('#top-msg').text(''); }, 3000);
+      }
+      else {
+        $('#top-msg').text('Recent Games Loaded!');
+        setTimeout(function(){ $('#top-msg').text(''); }, 3000);
+      }
+    });
+  }
+
+</script>

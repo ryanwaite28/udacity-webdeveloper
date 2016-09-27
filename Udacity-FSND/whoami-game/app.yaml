@@ -1,0 +1,47 @@
+application: gamewai-142922
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+# --- Handlers
+
+handlers:
+- url: /
+  script: main.app
+  secure: always
+
+# The endpoints handler must be mapped to /_ah/spi.
+# Apps send requests to /_ah/api, but the endpoints service handles mapping
+# those requests to /_ah/spi.
+- url: /_ah/spi/.*
+  script: game.api
+  secure: always
+
+# Task Queue(s) + Cron(s) Links
+- url: /tasks/send_newuser_email
+  script: main.app
+
+- url: /tasks/send_newgame_email
+  script: main.app
+
+- url: /crons/notify_users_active_games
+  script: main.app
+  login: admin
+
+
+
+# --- Libraries
+
+libraries:
+- name: webapp2
+  version: "2.5.2"
+
+- name: pycrypto
+  version: latest
+
+- name: endpoints
+  version: latest
+
+- name: jinja2
+  version: latest

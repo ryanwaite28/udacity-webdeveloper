@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Oberra | Delete Comment</title>
+    {% include 'head-info.html' %}
+  </head>
+
+  <body>
+	<div id="topbar">
+		<h3 class="text-center">Delete Comment</h3>
+		<hr>
+		{% include 'top-list.html' %}
+		<hr>
+	</div>
+    <div id="mainbox-1">
+      <h1 class="text-center">Delete Comment?</h1>
+      <p class="text-center">This Action Is Irreversable.</p>
+      <p class="text-center">{{ msg }}</p>
+      <hr>
+      <p class="text-center">
+        <strong>Contents:</strong><br>
+        {{ comment.contents }}</p>
+      <br>
+	  <form id="newpost-form" enctype="multipart/form-data" action="/comment/{{ comment.key().id() }}/delete" method="POST"/>
+      <input type="hidden" name="action" value="none"/>
+		  <input type="submit" id="nbps-btn" value="Submit"/>
+	  </form>
+    <br>
+    <a title="Go Back" href="/blog/post/{{ comment.key().id() }}"></a>
+    </div>
+  </body>
+
+</html>

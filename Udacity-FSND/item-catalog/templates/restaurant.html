@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+	<title></title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<link rel="stylesheet" type="text/css" href="http://ryanwaite28.github.io/my-cdn/css/bootstrap.css"/>
+	<link rel="stylesheet" type="text/css" href="http://ryanwaite28.github.io/my-cdn/css/emerald.css"/>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}"/>
+	<link rel="stylesheet" type="text/css" media="only screen and (max-width: 785px)" href="{{ url_for('static', filename='mobile-style.css') }}">
+	<link rel="icon" type="image/" href=""/>
+	<script src="http://ryanwaite28.github.io/my-cdn/js/angular.js"></script>
+	<script src="http://ryanwaite28.github.io/my-cdn/js/jquery.js"></script>
+	<script src="http://ryanwaite28.github.io/my-cdn/js/emerald.js"></script>
+	<script src="//apis.google.com/js/platform.js?onload=start"></script>
+	<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</head>
+
+	<body ng-app="myApp" ng-controller="masterCtrl">
+
+		<div id="topbar">
+			<div id="inner-div">
+				<h1 id="top-text">Item Catalog</h1>
+				<ul id="top-list">
+					<li class="transition">
+						{% if 'username' not in session %}
+    <a href="/login">Sign In</a>
+{% else %}
+    <a href="/gdisconnect">Log Out</a>
+		<ul>
+			<li>
+				{{ session['username'] }}<br>
+				{{ session['email'] }}<br>
+			</li>
+			<li><img style="width: 100%;" alt="Profile Image" src="{{ session['picture'] }}"></li>
+		</ul>
+{% endif %}
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div id="grand-container" class="container-fluid">
+
+			<div class="row">
+
+				<div class="col-md-12">
+
+					<div class="col-inner2">
+						<h2 class="text-center">Restaurant</h2>
+						<p style="text-align: center;"><a href="new">Create Menu Item</a></p>
+						<p style="text-align: center;">
+							<a href="{{ url_for('editRestaurant', restaurant_id=restaurant.id) }}">Edit Restaurant</a>
+						</p>
+						<p style="text-align: center;">
+							<a href="{{ url_for('deleteRestaurant', restaurant_id=restaurant.id) }}">Delete Restaurant</a>
+						</p>
+						<p style="text-align: center;">
+							<a href="{{ url_for('restaurantMenuJSON', restaurant_id=restaurant.id ) }}">View JSON</a>
+						</p>
+						<p style="text-align: center;"><a href="/">Return</a></p>
+						<hr>
+						<h3 class="text-center">{{ restaurant.name }}</h3>
+						<br>
+						<ul>
+							{% for item in items %}
+							<li>
+								<p><a href="{{ url_for('viewItem', restaurant_id=item.restaurant_id, menu_id=item.id) }}">
+									<strong>{{item.name}}</strong>
+								</a><br>
+      					{{item.price}}<br>
+      					{{item.description}}<br>
+      					<a href="{{ url_for('editMenuItem', restaurant_id = restaurant.id, menu_id = item.id) }}">Edit</a> |
+      					<a href="{{ url_for('deleteMenuItem', restaurant_id = restaurant.id, menu_id = item.id ) }}">Delete</a></p>
+							</li>
+							<br>
+							{% endfor %}
+						</ul>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</body>
+
+</html>

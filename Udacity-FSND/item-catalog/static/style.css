@@ -1,0 +1,106 @@
+/* New Style */
+#topbar {
+  position: fixed;
+  width: 100%;
+  border-bottom: 1px solid black;
+  z-index: 1000;
+  background-color: white;
+}
+
+#inner-div {
+  width: 800px;
+  max-width: 100%;
+  display: block;
+  margin: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+
+}
+
+#top-text {
+  margin: 0px;
+  height: 60px;
+  line-height: 60px;
+  vertical-align: middle;
+  float: left;
+}
+
+#top-list {
+  padding: 0px;
+  margin: 0px;
+  text-align: right;
+}
+#top-list li {
+  list-style: none;
+  line-height: 60px;
+  padding-left: 20px;
+  padding-right: 20px;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+}
+#top-list li ul {
+  padding: 0px;
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  border: 1px solid black;
+  right: 0px;
+  color: black;
+  z-index: 1000;
+  background-color: white;
+  width: auto;
+}
+#top-list li ul li {
+  width: 200px;
+  max-width: 100%;
+  padding: 15px;
+}
+#top-list li:hover ul {
+  visibility: visible;
+  opacity: 1.0;
+
+}
+#top-list li form input {
+  line-height: 30px;
+  display: block;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+#top-list li:hover {
+  background-color: black;
+  color: white;
+}
+
+#grand-container {
+  padding-top: 100px;
+}
+
+textarea {
+  width: 325px;
+  height: 150px;
+  max-width: 100%;
+}
+
+/* --- */
+
+.col-inner {
+  padding: 5px;
+  display: block;
+  margin: auto;
+  max-width: 100%;
+}
+.col-inner2 {
+  padding: 5px;
+  display: block;
+  margin: auto;
+  width: 800px;
+  max-width: 100%;
+}
+
+.col-inner ul li , .col-inner2 ul li {
+  display: block;
+  margin: auto;
+  list-style: none;
+}

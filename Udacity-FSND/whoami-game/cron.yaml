@@ -1,0 +1,9 @@
+# -- Cron Jobs
+
+cron:
+- description: Notify Users Of Their Active Games
+  url: /crons/notify_users_active_games
+  schedule: every 72 hours
+  retry_parameters:
+    min_backoff_seconds: 2.5
+    max_doublings: 5

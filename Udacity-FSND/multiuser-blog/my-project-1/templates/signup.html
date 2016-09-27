@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Oberra | Sign Up!</title>
+    {% include 'head-info.html' %}
+  </head>
+
+  <body>
+    <div id="topbar">
+		<h3 class="text-center">Sign Up</h3>
+		<hr>
+		{% include 'top-list.html' %}
+		<hr>
+	</div>
+    <div id="mainbox-1">
+
+      <p class="text-center">{{ msg }}</p>
+
+		  <form id="signup-form" enctype="multipart/form-data" action="/signup" method="POST">
+			     <input type="text" name="uname" id="username-ipt" placeholder="Username"/>
+			     <input type="password" name="pswrd" id="pswrd-ipt" placeholder="Password"/>
+			     <input type="password" name="verify" id="verify" placeholder="Verify Password"/>
+			     <input id="signup-btn" type="submit" value="Submit"/>
+           <p class="text-center">{{ msg }}</p>
+		 </form>
+
+    </div>
+  </body>
+
+</html>

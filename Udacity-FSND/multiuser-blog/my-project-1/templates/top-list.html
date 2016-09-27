@@ -1,0 +1,13 @@
+{% if you %}<p class="text-center">{{ you.username }}</p>{% endif %}
+<ul id="top-links">
+      <li><a title="Welcome Page" href="/">Welcome</a></li>
+	  <li><a title="Profile Page" href="/profile">Profile</a></li>
+	  <li><a title="Welcome Page" href="/blog/post/new">Make Post</a></li>
+      <li><a title="Login Page" href="/login">Log In</a></li>
+      <li><a title="Signup Page" href="/signup">Sign Up</a></li>
+
+	  <li><a title="Welcome Page" href="/"></a></li>
+	  {% if you %}
+	   <li><a title="Log Out" href="/logout">Log Out</a></li>
+	  {% endif %}
+    </ul>

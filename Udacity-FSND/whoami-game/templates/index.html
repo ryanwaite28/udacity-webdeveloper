@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Game - Who Am I?</title>
+    <meta name="google-signin-client_id" content="1084459565417-7gbdjm8cdcggu1ngfimlf3gmv9rmo68e.apps.googleusercontent.com">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- Generic CSS/JS Includes Because I Didn't Want To Mess With The app.yaml -->
+    {% include 'style-1.html' %}
+    {% include 'script-1.html' %}
+    <!--  Load the Google APIs Javascript client library -->
+    <!--  Then call the init function, which is defined in hello.js -->
+    <script src="https://apis.google.com/js/client.js?onload=init"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <link rel="icon" type="image/png" size="20x20" href="http://cliparting.com/wp-content/uploads/2016/06/Question-mark-in-a-circle-vector-clip-art.png">
+  </head>
+
+  <body>
+
+
+
+    <!-- End Includes -->
+
+    <h1 class="text-center">Who Am I?</h1>
+    <p class="text-center">Guessing Game!</p>
+    <p class="text-center">
+      <em>When Guessing Names, Please Use Full Names (First and Last)!
+      <br>For Example: john doe</em>
+      </p>
+    <br>
+    <p class="text-center"><strong><span id="top-msg"></span></strong></p>
+    <hr>
+    <br>
+
+    <div class="container-fluid">
+
+      <div class="row">
+
+        <div class="col-sm-4">
+          <div class="col-sm-12" style="padding: 10px;" id="g-sign-btn">
+            <div class="box-2">
+              <img id="prof-img" src=""/>
+              <h3>Sign In</h3>
+              <br>
+              <div class="g-signin2" data-onsuccess="onSignIn"></div><br>
+              <a href="#" onclick="signOut();">Sign out</a>
+              <br>
+              <input id="game-signin" type="button" value="Sign In" onclick="signIntoGame()"/>
+              <input id="game-new" type="button" value="New Game" onclick="newGame()"/>
+              <input id="game-quit" type="button" value="Quit Game" onclick="quitGame()"/>
+              <input id="get-rankings" type="button" value="Get Rankings" onclick="getTopScores()"/>
+              <input id="get-recent-games" type="button" value="Show Recent Games" onclick="getRecentGames()"/>
+            </div>
+          </div>
+
+          <div class="col-sm-12" style="padding: 10px;" id="user-div">
+            <div class="box-2">
+              <h3>Current User</h3>
+              <hr>
+              <p><strong>Display Name: </strong><span id="displayname-p"></span></p>
+              <p><strong>Email: </strong><span id="email-p"></span></p>
+              <p><strong>Games Played: </strong><span id="gp-p"></span></p>
+              <p><strong>Games Won: </strong><span id="gw-p"></span></p>
+              <p><strong>Games Lost: </strong><span id="gl-p"></span></p>
+            </div>
+          </div>
+
+          <div class="col-sm-12" style="padding: 10px;" id="rankings-div">
+            <div class="box-2">
+              <h3>Rankings</h3>
+              <hr>
+              <ol id="ranks-list">
+
+              </ol>
+            </div>
+
+          </div>
+
+          <div class="col-sm-12" style="padding: 10px;" id="recents-div">
+            <div class="box-2">
+              <h3>Recent Games</h3>
+              <hr>
+              <ol id="recents-list">
+
+              </ol>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-sm-8">
+          <div class="col-sm-12" style="padding: 10px;" id="game-div">
+
+            <div class="box-2">
+              <h3>Current Game</h3>
+              <hr>
+              <p><strong>Hint 1:</strong> <br><span id="hint-1"></span></p>
+              <p><strong>Hint 2:</strong> <br><span id="hint-2"></span></p>
+              <p><strong>Hint 3:</strong> <br><span id="hint-3"></span></p>
+
+              <br>
+
+              <input type="text" id="guess-input" placeholder="Guess An Answer"/>
+              <br><br>
+              <input onclick="guessAnswer()" type="button" id="submit-guess-btn" value="Guess"/>
+
+            </div>
+
+          </div>
+        </div>
+
+
+
+      </div>
+
+    </div>
+
+
+
+  </body>
+
+</html>

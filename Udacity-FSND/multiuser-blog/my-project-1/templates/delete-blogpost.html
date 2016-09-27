@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Oberra | Delete Post</title>
+    {% include 'head-info.html' %}
+  </head>
+
+  <body>
+	<div id="topbar">
+		<h3 class="text-center">Delete Post</h3>
+		<hr>
+		{% include 'top-list.html' %}
+		<hr>
+	</div>
+    <div id="mainbox-1">
+      <h1 class="text-center">Delete Post?</h1>
+      <p class="text-center">This Action Is Irreversable.</p>
+      <p class="text-center">{{ msg }}</p>
+      <hr>
+      <p class="text-center">
+        <strong>Title:</strong><br>
+        {{ post.title }}</p>
+      <p class="text-center">
+        <strong>Contents:</strong><br>
+        {{ post.contents }}</p>
+      <br>
+	  <form id="newpost-form" enctype="multipart/form-data" action="/post/{{ post.key().id() }}/delete" method="POST"/>
+		  <input class="middlr" type="hidden" name="action" value="delete"/>
+		  <input type="submit" id="nbps-btn" value="Delete"/>
+	  </form>
+    <br>
+    <a title="Go Back" href="/blog/post/{{ post.key().id() }}"></a>
+    </div>
+  </body>
+
+</html>

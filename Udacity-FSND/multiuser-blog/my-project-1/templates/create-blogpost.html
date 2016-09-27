@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Oberra | New Post</title>
+    {% include 'head-info.html' %}
+  </head>
+
+  <body>
+	<div id="topbar">
+		<h3 class="text-center">New Post</h3>
+		<hr>
+		{% include 'top-list.html' %}
+		<hr>
+	</div>
+    <div id="mainbox-1">
+      <h1 class="text-center">New Post</h1>
+      <p class="text-center">{{ msg }}</p>
+      <hr>
+	  <form id="newpost-form" enctype="multipart/form-data" action="/blog/post/new" method="POST"/>
+		  <input class="middlr" name="title" type="text" id="newpost-title" placeholder="Blog Post Title" value="{{ title }}"/>
+		  <br>
+		  <textarea id="nbp-cont" name="contents" class="middlr" placeholder="Blog Post Contents...">{{ contents }}</textarea>
+		  <br>
+		  <input type="submit" id="nbps-btn" value="Submit"/>
+	  </form>
+    </div>
+  </body>
+
+</html>

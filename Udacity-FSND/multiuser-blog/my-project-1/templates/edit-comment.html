@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Oberra | Edit Comment</title>
+    {% include 'head-info.html' %}
+  </head>
+
+  <body>
+	<div id="topbar">
+		<h3 class="text-center">Edit Comment</h3>
+		<hr>
+		{% include 'top-list.html' %}
+		<hr>
+	</div>
+    <div id="mainbox-1">
+      <h1 class="text-center">Edit Comment</h1>
+      <p class="text-center">{{ msg }}</p>
+      <hr>
+	  <form id="newpost-form" enctype="multipart/form-data" action="/comment/{{ comment.key().id() }}/edit" method="POST"/>
+		  <textarea id="nbp-cont" name="contents" class="middlr" placeholder="Blog Post Contents...">{{ comment.contents }}</textarea>
+		  <br>
+		  <input type="submit" id="nbps-btn" value="Submit"/>
+	  </form>
+    <br>
+    <a title="Go Back" href="/blog/post/{{ comment.key().id() }}"></a>
+    </div>
+  </body>
+
+</html>

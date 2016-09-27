@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<title></title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<link rel="stylesheet" type="text/css" href="http://ryanwaite28.github.io/my-cdn/css/bootstrap.css"/>
+	<link rel="stylesheet" type="text/css" href="http://ryanwaite28.github.io/my-cdn/css/emerald.css"/>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}"/>
+	<link rel="stylesheet" type="text/css" media="only screen and (max-width: 785px)" href="{{ url_for('static', filename='mobile-style.css') }}">
+	<link rel="icon" type="image/" href=""/>
+	<script src="http://ryanwaite28.github.io/my-cdn/js/angular.js"></script>
+	<script src="http://ryanwaite28.github.io/my-cdn/js/jquery.js"></script>
+	<script src="http://ryanwaite28.github.io/my-cdn/js/emerald.js"></script>
+	<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</head>
+
+  <body>
+
+    <form class="col-md-12" action="{{ url_for('deleteRestaurant', restaurant_id=restaurant.id) }}" method="POST">
+			<h1>Delete Restaurant</h1>
+			<h3>{{ restaurant.name }}</h3>
+			<hr>
+      <p>Are You Sure You Want To Delete This Restaurant?<br>
+			It, along with all of its menu items, will be gone.</p>
+			<br>
+      <input type="submit" value="Delete"/>
+			<br><br>
+
+	    <a href="{{ url_for('restaurantMenu', restaurant_id=restaurant.id) }}">Return</a>
+    </form>
+
+  </body>
+
+</html>

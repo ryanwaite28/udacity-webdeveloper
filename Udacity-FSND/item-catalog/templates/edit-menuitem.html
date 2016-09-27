@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" type="text/css" href="http://ryanwaite28.github.io/my-cdn/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="http://ryanwaite28.github.io/my-cdn/css/emerald.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}"/>
+    <link rel="stylesheet" type="text/css" media="only screen and (max-width: 785px)" href="{{ url_for('static', filename='mobile-style.css') }}">
+    <link rel="icon" type="image/" href=""/>
+    <script src="http://ryanwaite28.github.io/my-cdn/js/angular.js"></script>
+    <script src="http://ryanwaite28.github.io/my-cdn/js/jquery.js"></script>
+    <script src="http://ryanwaite28.github.io/my-cdn/js/emerald.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+  </head>
+
+  <body>
+
+    <form class="col-md-12" action="{{ url_for( 'editMenuItem', restaurant_id = restaurant_id, menu_id = menu_id ) }}" method="post">
+      <h1>{{ item.restaurant.name }}</h1>
+      <h3>Edit Menu Item: {{ item.name }}</h3>
+      <hr>
+      <p>Name:</p>
+      <input type="text" name="itemname" value="{{ item.name }}" required/><br><br>
+      <p>Price:</p>
+      <input type="text" name="itemprice" value="{{ item.price }}" required/><br><br>
+      <p>Description:</p>
+      <textarea type="text" name="itemdesc" placeholder="{{ item.description }}" required></textarea><br><br>
+      <input id="s-1" type="submit" value="Create"/>
+      <br><br>
+
+      <a href="{{ url_for('restaurantMenu', restaurant_id = restaurant_id) }}{{ item.id }}/">Return</a>
+    </form>
+
+
+
+  </body>
+
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Oberra | Log In!</title>
+    {% include 'head-info.html' %}
+  </head>
+
+  <body>
+    <div id="topbar">
+		<h3 class="text-center">Log In</h3>
+		<hr>
+		{% include 'top-list.html' %}
+		<hr>
+	</div>
+    <div id="mainbox-1">
+
+		<form id="login-form" enctype="multipart/form-data" action="/login" method="POST">
+			<input type="text" name="uname" id="username-ipt" placeholder="Username"/>
+			<input type="password" name="pswrd" id="pswrd-ipt" placeholder="Password"/>
+			<input id="login-btn" type="submit" value="Submit"/>
+      <p class="text-center">{{ msg }}</p>
+		</form>
+
+    </div>
+  </body>
+
+</html>

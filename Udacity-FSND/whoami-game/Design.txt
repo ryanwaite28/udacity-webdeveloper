@@ -1,0 +1,31 @@
+Hello reader, i am Ryan Waite and i am a full stack web developer. This is a project from an online course at Udacity.
+Out of all the projects i have ever done, i must say that this in the top 5 as far as frustrating. It is never as easy 
+as it seems when using another's framework/structure. This project was to create a game using google cloud endpoints
+and google app engine / datastore. 
+
+I am a very explicit person. In certain situations, things to to be quick and direct. The documentations on using google's 
+app engine, datastore, and endpoints, are good but not as explicit as i had hoped. And if google, the creator, can't explain good,
+then likely no one else can(stackoverflow was little to no help). So then i do what i always do when i learn how something works; 
+use it. Once i started to learn how all of the classes, methods, and everything worked, it was game over. I can get up and running in seconds once i 
+know how something works(like my travellr app - travellrs.com). 
+
+I like to begin with the end in mind(quote from my old teacher - Coach Keith Adams). I knew how i wanted the app to be and how i want it to work.
+My style is simple yet effective, which condones the idea and process of scaling. All of my functions are used and plays a big role; there are no stray code.
+Some code are reusable for easy executing (D.R.Y); some of my code can only be executed a certain way 
+(for ex. a function that is called at a specific time and/or by a specific function).
+
+After making this app, i realized something about using platforms and/or frameworks:
+sometimes, if you want something done right, do it yourself.
+
+I say this in the view of what things you want abstracted. Using a platform or framework 
+adds more abstraction because you may not ever know how exactly it works, despite all the provided documentation.
+it can take a long time to get a new app up and running, and ever longer when trouble shooting.
+i personally like to know all the ins and outs because it allows me to pin-point anything that happens.
+Frameworks are great in a lot of senses; they already did you would probably do or are looking for.
+But given the nature of code; when something starts working, something else stops working.
+This is all opinion based.
+
+I think my code is great, as far as syntax and structure. no wasted lines and very readable.
+Next time around, i know how i can get up and started faster and better. 
+
+Overall, This project was agrivating yet fun and worth learning a new platform. Google app engine is something amazing!

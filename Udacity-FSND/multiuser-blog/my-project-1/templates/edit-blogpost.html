@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Oberra | Edit Post</title>
+    {% include 'head-info.html' %}
+  </head>
+
+  <body>
+	<div id="topbar">
+		<h3 class="text-center">Edit Post</h3>
+		<hr>
+		{% include 'top-list.html' %}
+		<hr>
+	</div>
+    <div id="mainbox-1">
+      <h1 class="text-center">Edit Post</h1>
+      <p class="text-center">{{ msg }}</p>
+      <hr>
+	  <form id="newpost-form" enctype="multipart/form-data" action="/post/{{ post.key().id() }}/edit" method="POST"/>
+		  <input class="middlr" name="title" type="text" id="newpost-title" placeholder="Blog Post Title" value="{{ post.title }}"/>
+		  <br>
+		  <textarea id="nbp-cont" name="contents" class="middlr" placeholder="Blog Post Contents...">{{ post.contents }}</textarea>
+		  <br>
+		  <input type="submit" id="nbps-btn" value="Submit"/>
+	  </form>
+    <br>
+    <a title="Go Back" href="/blog/post/{{ post.key().id() }}"></a>
+    </div>
+  </body>
+
+</html>

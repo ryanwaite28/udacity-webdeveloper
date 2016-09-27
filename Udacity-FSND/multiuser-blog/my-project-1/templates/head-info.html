@@ -1,0 +1,134 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+<!-- Style -->
+<style>
+
+	hr {
+		border-color: grey;
+	}
+	li {
+		list-style: none;
+	}
+	.middlr {
+		display: block;
+		margin: auto;
+	}
+	.co-img {
+		float: left;
+		margin-right: 15px;
+	}
+  #top-links {
+    padding: 0px;
+    margin: 0px;
+    text-align: center;
+    width: 100%;
+  }
+  #top-links li {
+    display: inline-block;
+    padding: 0px 15px;
+  }
+  #mainbox-1 {
+    width: 875px;
+    max-width: 100%;
+    display: block;
+    margin: auto;
+    padding-top: 200px;
+  }
+  #nbp-cont {
+	width: 375px;
+	height: 175px;
+  }
+  #nc-cont {
+	width: 60%;
+	height: 75px;
+  }
+  form input, form textarea {
+	display: block;
+	margin: auto;
+	margin-bottom: 15px;
+	border-radius: 3px;
+	font-weight: bold;
+	border: 1px solid black;
+	padding: 5px;
+  }
+  form input[type="text"], form input[type="password"] {
+	min-width: 275px;
+  }
+  form input[type="submit"]:hover {
+	background: lightgrey;
+  }
+  #topbar {
+	position: fixed;
+	width: 100%;
+	z-index: 100;
+	background: white;
+  }
+  .top-spacr {
+	padding-top: 200px;
+  }
+  #prof-img {
+	width: 300px;
+	height: 300px;
+	display: block;
+	margin: auto;
+	cursor: pointer;
+  }
+	#prof-img:hover {
+	opacity: 0.8;
+  }
+	#a-img1 {
+		width: 100px;
+		height: 100px;
+	}
+  .spacr-2 {
+	width: 825px;
+	max-width: 95%;
+	display: block;
+	margin: auto;
+  }
+
+	#welcome-list {
+	  padding: 0px;
+	  margin: 0px;
+	}
+	#welcome-list li {
+	  list-style: none;
+		margin-bottom: 50px;
+	}
+	#nc-text {
+		width: 100%;
+	}
+	#cpi-form {
+		display: none;
+	}
+
+</style>
+
+<!-- Mobile-Style -->
+<style>
+
+</style>
+
+<!-- Script -->
+<script>
+
+	$(document).ready(function(){
+
+		$('#prof-img').click(function(){
+
+			if( $('#cpi-form').css('display') == 'none' ) {
+				$('#cpi-form').show();
+			}
+			else {
+				$('#cpi-form').hide();
+			}
+
+		})
+
+	})
+
+</script>
