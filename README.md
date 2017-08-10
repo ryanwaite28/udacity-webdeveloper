@@ -7,8 +7,10 @@
 
 ______________________________________________________
 ![](http://i.imgur.com/wviTyGi.jpg)
-______________________________________________________
+![](http://i.imgur.com/bNQDz9R.png)
+
 ![](http://i.imgur.com/X3g8AsQ.png)
+![](http://i.imgur.com/BgVQlK2.png)
 ______________________________________________________
 
 >I Graduated/Completed The Front End Web Developer and Full Stack Web Developer
